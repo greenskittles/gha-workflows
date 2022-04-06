@@ -1,0 +1,22 @@
+name: Required review check
+on:
+  pull_request_review:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+
+jobs:
+  check:
+    name: Checking required reviews
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name
+
+    steps:
+      - uses: Automattic/action-required-review@fd72d095bddc59a428d4392277a76764c7462535
+        with:
+          requirements: |
+            - paths: unmatched
+              teams:
+                - @greenskittles
+          status: Required review
+          token: ${{ github.token }}
