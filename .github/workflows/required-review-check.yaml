@@ -17,6 +17,6 @@ jobs:
           requirements: |
             - paths: unmatched
               teams:
-                - @greenskittles
+                - greenskittles
           status: Required review
           token: ${{ github.token }}
